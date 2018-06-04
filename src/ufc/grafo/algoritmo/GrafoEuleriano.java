@@ -16,7 +16,22 @@ public class GrafoEuleriano {
     private Grafo grafo;
     public void testeGrafo(Grafo grafo){
         this.grafo = grafo;
-        encontrarCaminhoEuleriano();
+        int resultado = ehEuleriano();
+        switch (resultado) {
+            case 0:
+                System.out.println("Não é um grafo euleriano");
+                break;
+            case 1:
+                System.out.println("É um grafo semi-euleriano");
+                encontrarCaminhoEuleriano();
+                break;
+            default:
+                System.out.println("É um grafo euleriano");
+                encontrarCaminhoEuleriano();
+                break;
+            
+        }
+        
     }
     private void DFS(int i, boolean[] visitados) {
 
@@ -81,7 +96,6 @@ public class GrafoEuleriano {
         return true;
     }
     public void encontrarCaminhoEuleriano() {
-        System.out.println("Caminho euleriano");
         int inicial = 0;
         for (int j = 0; j < grafo.vertice; j++) {
             if (grafo.arestas[j].size() % 2 == 1) {
@@ -137,5 +151,50 @@ public class GrafoEuleriano {
         g1.addAresta(3, 4);
         euler.testeGrafo(g1);
         
+        Grafo g2 = new Grafo(5);
+        g2.addAresta(1, 0);
+        g2.addAresta(0, 2);
+        g2.addAresta(2, 1);
+        g2.addAresta(0, 3);
+        g2.addAresta(3, 4);
+        g2.addAresta(4, 0);
+        euler.testeGrafo(g2);
+        //1---0---3
+        //|  / \  |
+        //| /   \ |
+        // 2     4
+        Grafo g3 = new Grafo(5);
+        g3.addAresta(1, 0);
+        g3.addAresta(0, 2);
+        g3.addAresta(2, 1);
+        g3.addAresta(0, 3);
+        g3.addAresta(3, 4);
+        g3.addAresta(1, 3);
+        euler.testeGrafo(g3);
+        //_ _ _ _ _
+        //|       |
+        //1---0---3
+        //|  /    |
+        //| /     |
+        // 2     4
+        Grafo g4 = new Grafo(3);
+        g4.addAresta(0, 1);
+        g4.addAresta(1, 2);
+        g4.addAresta(2, 0);
+        euler.testeGrafo(g4);
+
+        Grafo g5 = new Grafo(6);
+        g5.addAresta(0, 1);
+        g5.addAresta(0, 1);
+        g5.addAresta(0, 1);
+        g5.addAresta(0, 2);
+        g5.addAresta(1, 3);
+        g5.addAresta(2, 3);
+        g5.addAresta(4, 5);
+        g5.addAresta(4, 5);
+        g5.addAresta(4, 5);
+        g5.addAresta(2, 4);
+        g5.addAresta(3, 5);
+        euler.testeGrafo(g5);
     }
 }
