@@ -205,5 +205,7 @@ public class Grafo {
         g5.addAresta(3, 5);
         g5.encontrarCaminhoEuleriano();
         
+        //teste git
+        System.out.println("Teste git");
     }
 }
