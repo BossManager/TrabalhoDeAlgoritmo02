@@ -12,7 +12,7 @@ import ufc.grafo.Grafo;
  *
  * @author Daniel-BOSS
  */
-public class GrafoEuleriano {
+public class AlgoritmoDeFleury {
     private Grafo grafo;
     public void testeGrafo(Grafo grafo){
         this.grafo = grafo;
@@ -142,7 +142,7 @@ public class GrafoEuleriano {
         }
     }
     public static void main(String[] args) {
-        GrafoEuleriano euler = new GrafoEuleriano();
+        AlgoritmoDeFleury euler = new AlgoritmoDeFleury();
         Grafo g1 = new Grafo(5);
         g1.addAresta(1, 0);
         g1.addAresta(0, 2);
