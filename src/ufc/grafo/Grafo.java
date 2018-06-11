@@ -9,13 +9,15 @@ import java.util.LinkedList;
 public class Grafo {
     public LinkedList<Integer> arestas[];
     public int vertice;
-
+    public int in[];
     public Grafo(int v) {
         vertice = v;
         arestas = new LinkedList[v];
-
-        for (int i = 0; i < vertice; i++)
+        in = new int[v];
+        for (int i = 0; i < vertice; i++){
             arestas[i] = new LinkedList();
+            in[i] = 0;
+        }
 
     }
 
@@ -29,6 +31,7 @@ public class Grafo {
     }
     public void addArestaD(int u,int v){
         arestas[u].add(v);
+        in[v]++;
     }
 
     public void delArestaD(int curr_v, int next_v) {
