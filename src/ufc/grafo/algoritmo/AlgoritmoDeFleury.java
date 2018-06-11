@@ -1,14 +1,20 @@
 package ufc.grafo.algoritmo;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import ufc.grafo.Grafo;
 
 /**
  *
  * @author Daniel-BOSS
+ * @author falexandremc
  */
 public class AlgoritmoDeFleury {
     private Grafo grafo;
+    /**
+     * Método exibe uma mensagem de resultado depois de testar se o grafo é euleriano
+     * @param grafo a ser testado
+    */
     public void testeGrafo(Grafo grafo){
         this.grafo = grafo;
         int resultado = ehEuleriano();
@@ -28,6 +34,11 @@ public class AlgoritmoDeFleury {
         }
         
     }
+    /**
+     * Método realiza uma busca em profundidade recursiva no grafo
+     * @param visitados lista de vertices visitados
+     * @param i vertice inicial a ser visitado
+    */
     private void DFS(int i, boolean[] visitados) {
 
         visitados[i] = true;
@@ -40,17 +51,18 @@ public class AlgoritmoDeFleury {
                 DFS(n, visitados);
         }
     }
+    /**
+     * Método verifica se o grafo é euleriano ou semi-euleriano ou nenhum dos dois
+     * @return 0 se o grafo não é euleriano, 1 se o grafo é semi-euleriano e 2 se o grafo é euleriano
+    */
     public int ehEuleriano() {
-        //0 = não é euleriano
-        //1 = existe um caminho euleriano(semi Euleriano)
-        //2 = existe um ciclo euleriano(Euleriano)
         if (!ehConectado())
             return 0;
 
         int impar = 0;
 
-        for (int i = 0; i < grafo.arestas.length; i++)
-            if (grafo.arestas[i].size() % 2 == 1)
+        for (LinkedList<Integer> aresta : grafo.arestas)
+            if (aresta.size() % 2 == 1)
                 impar++;
 
         if (impar > 2)
