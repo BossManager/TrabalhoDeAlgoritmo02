@@ -36,9 +36,8 @@ public class AlgoritmoDeFleury {
 
         while (car.hasNext()) {
             int n = car.next();
-            if (!visitados[n]) {
+            if (!visitados[n])
                 DFS(n, visitados);
-            }
         }
     }
     public int ehEuleriano() {
@@ -68,7 +67,7 @@ public class AlgoritmoDeFleury {
             visitados[i] = false;
 
         for (i = 0; i < grafo.vertice; i++)
-            if (grafo.arestas[i].size() != 0)
+            if (!grafo.arestas[i].isEmpty())
                 break;
         if (i == grafo.vertice)
             return true;
@@ -103,14 +102,13 @@ public class AlgoritmoDeFleury {
         
         grafo.addAresta(u, v);
         
-        return (sum(visitados1)>sum(visitados2))?false:true;
+        return sum(visitados2) > sum(visitados1);
     }
     private int sum(boolean[] vetor){
         int count = 0;
-        for(int i = 0; i<vetor.length; i++){
+        for(int i = 0; i<vetor.length; i++)
             if(vetor[i])
                 count++;
-        }
         return count;
     }
     private void encontrarCaminhoEulerianoSub(int inicial) {
