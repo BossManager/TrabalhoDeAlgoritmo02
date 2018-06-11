@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ufc.grafo.algoritmo;
 
 import java.util.Iterator;
@@ -50,21 +45,17 @@ public class AlgoritmoDeFleury {
         //0 = não é euleriano
         //1 = existe um caminho euleriano(semi Euleriano)
         //2 = existe um ciclo euleriano(Euleriano)
-        if (!ehConectado()) {
+        if (!ehConectado())
             return 0;
-        }
 
         int impar = 0;
 
-        for (int i = 0; i < grafo.arestas.length; i++) {
-            if (grafo.arestas[i].size() % 2 == 1) {
+        for (int i = 0; i < grafo.arestas.length; i++)
+            if (grafo.arestas[i].size() % 2 == 1)
                 impar++;
-            }
-        }
 
-        if (impar > 2) {
+        if (impar > 2)
             return 0;
-        }
         
         return (impar==2)?1:2;
     }
@@ -73,42 +64,34 @@ public class AlgoritmoDeFleury {
         boolean[] visitados = new boolean[grafo.vertice];
 
         int i;
-        for (i = 0; i < grafo.vertice; i++) {
+        for (i = 0; i < grafo.vertice; i++)
             visitados[i] = false;
-        }
 
-        for (i = 0; i < grafo.vertice; i++) {
-            if (grafo.arestas[i].size() != 0) {
+        for (i = 0; i < grafo.vertice; i++)
+            if (grafo.arestas[i].size() != 0)
                 break;
-            }
-        }
-        if (i == grafo.vertice) {
+        if (i == grafo.vertice)
             return true;
-        }
 
         DFS(i, visitados);
 
-        for (i = 0; i < grafo.vertice; i++) {
-            if ((!visitados[i]) && grafo.arestas[i].size() > 0) {
+        for (i = 0; i < grafo.vertice; i++)
+            if ((!visitados[i]) && grafo.arestas[i].size() > 0)
                 return false;
-            }
-        }
         return true;
     }
     public void encontrarCaminhoEuleriano() {
         int inicial = 0;
-        for (int j = 0; j < grafo.vertice; j++) {
+        for (int j = 0; j < grafo.vertice; j++)
             if (grafo.arestas[j].size() % 2 == 1) {
                 inicial = j;
                 break;
             }
-        }
         encontrarCaminhoEulerianoSub(inicial);
     }
     private boolean ehArestaValida(Integer u,Integer v){
-        if(grafo.arestas[u].size()==1){
+        if(grafo.arestas[u].size()==1)
             return true;
-        }
         
         boolean[] visitados1 = new boolean[grafo.vertice];
         boolean[] visitados2 = new boolean[grafo.vertice];
