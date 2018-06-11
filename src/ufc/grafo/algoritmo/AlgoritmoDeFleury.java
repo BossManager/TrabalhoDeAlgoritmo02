@@ -179,5 +179,30 @@ public class AlgoritmoDeFleury {
         g5.addAresta(2, 4);
         g5.addAresta(3, 5);
         euler.testeGrafo(g5);
+        
+        Grafo g6 = new Grafo(10);
+        g6.addAresta(0, 1);
+        g6.addAresta(0, 3);
+        g6.addAresta(0, 5);
+        g6.addAresta(1, 2);
+        g6.addAresta(1, 3);
+        g6.addAresta(1, 4);
+        g6.addAresta(2, 4);
+        g6.addAresta(2, 5);
+        g6.addAresta(3, 4);
+        g6.addAresta(3, 6);
+        g6.addAresta(3, 9);
+        g6.addAresta(4, 5);
+        g6.addAresta(4, 6);
+        g6.addAresta(4, 7);
+        g6.addAresta(4, 8);
+        g6.addAresta(5, 7);
+        g6.addAresta(5, 9);
+        g6.addAresta(6, 7);
+        g6.addAresta(6, 9);
+        g6.addAresta(7, 8);
+        g6.addAresta(7, 9);
+        g6.addAresta(8, 9);
+        euler.testeGrafo(g6);
     }
 }

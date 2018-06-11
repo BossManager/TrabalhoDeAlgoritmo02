@@ -27,4 +27,11 @@ public class Grafo {
         arestas[u].remove(v);
         arestas[v].remove(u);
     }
+    public void addArestaD(int u,int v){
+        arestas[u].add(v);
+    }
+
+    public void delArestaD(int curr_v, int next_v) {
+        arestas[curr_v].remove(new Integer(next_v));
+    }
 }
