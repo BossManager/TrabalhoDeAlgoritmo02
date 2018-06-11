@@ -13,86 +13,11 @@ public class AlgoritmoDeHierholzer {
     private Grafo g;
     public void testeGrafo(Grafo g){
         this.g = g;
-        if(isEulerianCycle())
-            encontrarCaminhoEuleriano();
-        else
-            System.out.println("Não é euleriano");
+        
+        encontrarCaminhoEuleriano();
+        
     }
-    private Grafo getTranspose()
-    {
-        Grafo t = new Grafo(g.vertice);
-        for (int v = 0; v < g.vertice; v++)
-        {
-            // Recur for all the vertices adjacent to this vertex
-            Iterator<Integer> i = g.arestas[v].listIterator();
-            while (i.hasNext())
-            {
-                t.arestas[i.next()].add(v);
-                (t.in[v])++;
-            }
-        }
-        return t;
-    }
-    Boolean isEulerianCycle()
-    {
-        // Check if all non-zero degree vertices are connected
-        if (isSC() == false)
-            return false;
- 
-        // Check if in degree and out degree of every vertex is same
-        for (int i = 0; i < g.vertice; i++)
-            if (g.arestas[i].size() != g.in[i])
-                return false;
- 
-        return true;
-    }
-    private Boolean isSC()
-    {
-        // Step 1: Mark all the vertices as not visited (For
-        // first DFS)
-        boolean visited[] = new boolean[g.vertice];
-        for (int i = 0; i < g.vertice; i++)
-            visited[i] = false;
- 
-        // Step 2: Do DFS traversal starting from first vertex.
-        DFS(0, visited,g);
- 
-        // If DFS traversal doesn't visit all vertices, then return false.
-        for (int i = 0; i < g.vertice; i++)
-            if (visited[i] == false)
-                return false;
- 
-        // Step 3: Create a reversed graph
-        Grafo gr = getTranspose();
- 
-        // Step 4: Mark all the vertices as not visited (For second DFS)
-        for (int i = 0; i < g.vertice; i++)
-            visited[i] = false;
- 
-        // Step 5: Do DFS for reversed graph starting from first vertex.
-        // Staring Vertex must be same starting point of first DFS
-        DFS(0, visited,gr);
- 
-        // If all vertices are not visited in second DFS, then
-        // return false
-        for (int i = 0; i < g.vertice; i++)
-            if (visited[i] == false)
-                return false;
- 
-        return true;
-    }
-    private void DFS(int i, boolean[] visitados,Grafo g) {
-
-        visitados[i] = true;
-
-        Iterator<Integer> car = g.arestas[i].iterator();
-
-        while (car.hasNext()) {
-            int n = car.next();
-            if (!visitados[n])
-                DFS(n, visitados,g);
-        }
-    }
+    
     public void encontrarCaminhoEuleriano(){
         if(g.arestas.length==0)
             return;
