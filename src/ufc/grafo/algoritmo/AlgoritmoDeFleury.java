@@ -24,11 +24,11 @@ public class AlgoritmoDeFleury {
                 break;
             case 1:
                 System.out.println("É um grafo semi-euleriano");
-                encontrarCaminhoEuleriano();
+                printEulerTour();
                 break;
             default:
                 System.out.println("É um grafo euleriano");
-                encontrarCaminhoEuleriano();
+                printEulerTour();
                 break;
             
         }
@@ -70,7 +70,10 @@ public class AlgoritmoDeFleury {
         
         return (impar==2)?1:2;
     }
-
+    /**
+     * Método verifica se o grafo é conexo
+     * @return true caso o grafo seja conexo e caso contrario false
+    */
     private boolean ehConectado() {
         boolean[] visitados = new boolean[grafo.vertice];
 
@@ -91,7 +94,10 @@ public class AlgoritmoDeFleury {
                 return false;
         return true;
     }
-    public void encontrarCaminhoEuleriano() {
+    /**
+     * Método escolhe uma aresta inicial e executa o método printEulerUtil que é responsavel por exibir um caminho ou circuito euleriano
+    */
+    public void printEulerTour() {
         int inicial = 0;
         for (int j = 0; j < grafo.vertice; j++){
             if (grafo.arestas[j].size() % 2 == 1) {
@@ -99,8 +105,14 @@ public class AlgoritmoDeFleury {
                 break;
             }
         }
-        encontrarCaminhoEulerianoSub(inicial);
+        printEulerUtil(inicial);
     }
+    /**
+     * Método verifica se o a aresta não representa uma ponte (aresta de corte) no grafo
+     * @param u vertice do grafo que junto com o vertice v forma uma aresta
+     * @param v vertice do grafo que junto com o vertice u forma uma aresta
+     * @return true caso a aresta não represente uma ponte e caso contrario false
+    */
     private boolean ehArestaValida(Integer u,Integer v){
         if(grafo.arestas[u].size()==1){
             return true;
@@ -118,6 +130,11 @@ public class AlgoritmoDeFleury {
         
         return sum(visitados2) < sum(visitados1)?false:true;
     }
+    /**
+     * Método conta a quantidade de vertices visitados
+     * @param vetor lista de vertices
+     * @return quantidade de vertices da lista que foram visitados
+    */
     private int sum(boolean[] vetor){
         int count = 0;
         for(int i = 0; i<vetor.length; i++)
@@ -125,14 +142,17 @@ public class AlgoritmoDeFleury {
                 count++;
         return count;
     }
-    private void encontrarCaminhoEulerianoSub(int inicial) {
+    /**
+     * Método exibe um caminho ou circuito euleriano
+    */
+    private void printEulerUtil(int inicial) {
         for (int i = 0; i < grafo.arestas[inicial].size(); i++) {
             Integer v = grafo.arestas[inicial].get(i);
             
             if (ehArestaValida(inicial,v)) {
                 System.out.println(inicial + "<-->" + v);
                 grafo.delAresta(inicial, v);
-                encontrarCaminhoEulerianoSub(v);
+                printEulerUtil(v);
             }
         }
     }
