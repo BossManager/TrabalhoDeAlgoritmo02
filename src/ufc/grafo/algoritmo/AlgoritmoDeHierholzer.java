@@ -31,7 +31,13 @@ public class AlgoritmoDeHierholzer {
         Stack<Integer> caminho_atual = new Stack<>();
         Vector<Integer> circuito =  new Vector<>();
         caminho_atual.push(0);
-        int curr_v = 0;
+        int curr_v=0;
+        for(int i = 0;i<g.vertice;i++){
+            if(g.arestas[i].size()!=0){
+                curr_v = i;
+                break;
+            }
+        }
         while(!caminho_atual.empty()){
             if(g.arestas[curr_v].size()>0){
                 caminho_atual.push(curr_v);
@@ -83,9 +89,9 @@ public class AlgoritmoDeHierholzer {
         
         euler.testeGrafo(g3);
         
-        Grafo g4 =  new Grafo(4);
-        g4.addArestaD(0, 1);
-        g4.addArestaD(2, 3);
+        Grafo g4 =  new Grafo(3);
+        g4.addArestaD(1, 2);
+        
         
         euler.testeGrafo(g4);
     }
