@@ -11,13 +11,20 @@ import ufc.grafo.Grafo;
  */
 public class AlgoritmoDeHierholzer {
     private Grafo g;
+    
+    /*Método preenche a variavel g com um grafo e inicia o metodo para encontrar um caminho no grafo
+    
+    */
     public void testeGrafo(Grafo g){
         this.g = g;
         
         encontrarCaminhoEuleriano();
         
     }
-    
+    /*Método começa de um vertice qualquer, percorre arestas até retornar ao vertice inicial.
+    * enquanto houver um vertice que possuir arestas não exploradas inicie um caminho e tente voltar a ele
+    *
+    */
     public void encontrarCaminhoEuleriano(){
         if(g.arestas.length==0)
             return;
