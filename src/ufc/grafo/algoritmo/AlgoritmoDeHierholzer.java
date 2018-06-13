@@ -1,13 +1,14 @@
 package ufc.grafo.algoritmo;
 
-import java.util.Iterator;
 import java.util.Stack;
 import java.util.Vector;
 import ufc.grafo.Grafo;
 
 /**
- *
- * @author danen
+ * @author Daniel-BOSS
+ * @author falexandremc
+ * Implementação do algoritmo de Hierholzer
+ * Está sendo usado para encontrar um caminho fechado euleriano (circuito euleriano) em grafos direcionados
  */
 public class AlgoritmoDeHierholzer {
     private Grafo g;
@@ -31,22 +32,23 @@ public class AlgoritmoDeHierholzer {
         Stack<Integer> caminho_atual = new Stack<>();
         Vector<Integer> circuito =  new Vector<>();
         caminho_atual.push(0);
-        int atual_v=0;
+        int vertice_atual=0;
+        //Procura um vertice com arestas
         for(int i = 0;i<g.vertice;i++){
             if(g.arestas[i].size()!=0){
-                atual_v = i;
+                vertice_atual = i;
                 break;
             }
         }
         while(!caminho_atual.empty()){
-            if(g.arestas[atual_v].size()>0){
-                caminho_atual.push(atual_v);
-                int proxima_v = g.arestas[atual_v].getLast();
-                g.delArestaD(atual_v,proxima_v);
-                atual_v = proxima_v;
+            if(g.arestas[vertice_atual].size()>0){
+                caminho_atual.push(vertice_atual);
+                int proximo_vertice = g.arestas[vertice_atual].getLast();
+                g.delArestaD(vertice_atual,proximo_vertice);
+                vertice_atual = proximo_vertice;
             }else{
-                circuito.addElement(atual_v);
-                atual_v = caminho_atual.peek();
+                circuito.addElement(vertice_atual);
+                vertice_atual = caminho_atual.peek();
                 caminho_atual.pop();
             }
         }

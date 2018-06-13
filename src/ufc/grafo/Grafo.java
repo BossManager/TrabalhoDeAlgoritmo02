@@ -3,7 +3,6 @@ package ufc.grafo;
 import java.util.LinkedList;
 
 /**
- *
  * @author Daniel-BOSS
  * @author falexandremc
  */
