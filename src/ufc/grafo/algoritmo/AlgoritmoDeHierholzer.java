@@ -31,22 +31,22 @@ public class AlgoritmoDeHierholzer {
         Stack<Integer> caminho_atual = new Stack<>();
         Vector<Integer> circuito =  new Vector<>();
         caminho_atual.push(0);
-        int curr_v=0;
+        int atual_v=0;
         for(int i = 0;i<g.vertice;i++){
             if(g.arestas[i].size()!=0){
-                curr_v = i;
+                atual_v = i;
                 break;
             }
         }
         while(!caminho_atual.empty()){
-            if(g.arestas[curr_v].size()>0){
-                caminho_atual.push(curr_v);
-                int next_v = g.arestas[curr_v].getLast();
-                g.delArestaD(curr_v,next_v);
-                curr_v = next_v;
+            if(g.arestas[atual_v].size()>0){
+                caminho_atual.push(atual_v);
+                int proxima_v = g.arestas[atual_v].getLast();
+                g.delArestaD(atual_v,proxima_v);
+                atual_v = proxima_v;
             }else{
-                circuito.addElement(curr_v);
-                curr_v = caminho_atual.peek();
+                circuito.addElement(atual_v);
+                atual_v = caminho_atual.peek();
                 caminho_atual.pop();
             }
         }
