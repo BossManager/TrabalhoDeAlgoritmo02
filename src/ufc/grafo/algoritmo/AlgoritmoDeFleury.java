@@ -237,5 +237,33 @@ public class AlgoritmoDeFleury {
         g6.addAresta(7, 9);
         g6.addAresta(8, 9);
         euler.testeGrafo(g6);
+        
+        Grafo konisbergBr = new Grafo(3);
+        konisbergBr.addAresta(0, 1);
+        konisbergBr.addAresta(0, 1);
+        konisbergBr.addAresta(0, 1);
+        konisbergBr.addAresta(0, 1);
+        konisbergBr.addAresta(0, 2);
+        konisbergBr.addAresta(1, 2);
+        konisbergBr.addAresta(1, 2);
+        konisbergBr.addAresta(1, 2);
+        euler.testeGrafo(konisbergBr);
+        
+        Grafo viagem =  new Grafo(8);
+        viagem.addAresta(0, 1);
+        viagem.addAresta(0, 2);
+        viagem.addAresta(0, 6);
+        viagem.addAresta(0, 7);
+        viagem.addAresta(1, 2);
+        viagem.addAresta(1, 4);
+        viagem.addAresta(2, 3);
+        viagem.addAresta(2, 6);
+        viagem.addAresta(3, 4);
+        viagem.addAresta(4, 5);
+        viagem.addAresta(4, 7);
+        viagem.addAresta(5, 6);
+        viagem.addAresta(6, 7);
+        euler.testeGrafo(viagem);
+        
     }
 }
