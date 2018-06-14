@@ -5,9 +5,10 @@ import java.util.LinkedList;
 import ufc.grafo.Grafo;
 
 /**
- *
  * @author Daniel-BOSS
  * @author falexandremc
+ * Implementação do algoritmo de Fleury
+ * Está sendo usado para encontrar um caminho fechado euleriano (circuito euleriano) em grafos não direcionados
  */
 public class AlgoritmoDeFleury {
     private Grafo grafo;
