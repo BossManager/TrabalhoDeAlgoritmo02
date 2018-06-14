@@ -21,27 +21,50 @@ public class AlgoritmoDeHierholzer {
         encontrarCaminhoEuleriano();
         
     }
+    /*
+    Método que escolhe o vertice para iniciar o caminho
+    */
+    private int escolheVertice(){
+        int []contador_arestaE = new int[g.vertice];
+        for(int i=0;i<g.vertice;i++){
+            for(Integer o :g.arestas[i]){
+                contador_arestaE[o]++;
+            }
+        }
+        int num1,num2,grau;
+        num1=num2=0;
+        
+        for(int i=0;i<g.vertice;i++){
+            grau = (g.arestas[i].size()>contador_arestaE[i])?g.arestas[i].size()-contador_arestaE[i]:contador_arestaE[i]-g.arestas[i].size();
+            if(num1==0 && grau==1)
+                num1 = i;
+            else if(grau==1)
+                num2 = i;
+        }
+        return (g.arestas[num1].size()>g.arestas[num2].size())?num1:num2;
+    }
     /*Método começa de um vertice qualquer, percorre arestas até retornar ao vertice inicial.
     * enquanto houver um vertice que possuir arestas não exploradas inicie um caminho e tente voltar a ele
     *
     */
     public void encontrarCaminhoEuleriano(){
+        
+        int []contador_arestas = new int[g.vertice];
+        for(int i =0 ;i<g.arestas.length;i++)
+            contador_arestas[i] = g.arestas[i].size();
         if(g.arestas.length==0)
             return;
         Stack<Integer> caminho_atual = new Stack<>();
         Vector<Integer> circuito =  new Vector<>();
         caminho_atual.push(0);
         int atual_v=0;
-        for(int i = 0;i<g.vertice;i++){
-            if(g.arestas[i].size()!=0){
-                atual_v = i;
-                break;
-            }
-        }
+        atual_v = escolheVertice();
+        
         while(!caminho_atual.empty()){
-            if(g.arestas[atual_v].size()>0){
+            if(contador_arestas[atual_v]>0){
                 caminho_atual.push(atual_v);
                 int proxima_v = g.arestas[atual_v].getLast();
+                contador_arestas[atual_v]--;
                 g.delArestaD(atual_v,proxima_v);
                 atual_v = proxima_v;
             }else{
@@ -71,8 +94,8 @@ public class AlgoritmoDeHierholzer {
         g2.addArestaD(0, 1);
         g2.addArestaD(0, 6);
         g2.addArestaD(1, 2);
-        g2.addArestaD(2, 0);
         g2.addArestaD(2, 3);
+        g2.addArestaD(2, 0);
         g2.addArestaD(3, 4);
         g2.addArestaD(4, 2);
         g2.addArestaD(4, 5);
@@ -91,8 +114,18 @@ public class AlgoritmoDeHierholzer {
         
         Grafo g4 =  new Grafo(3);
         g4.addArestaD(1, 2);
-        
-        
+
         euler.testeGrafo(g4);
+        
+        Grafo g5 =  new Grafo(5);
+        g5.addArestaD(0, 2);
+        g5.addArestaD(1, 0);
+        g5.addArestaD(1, 4);
+        g5.addArestaD(2, 1);
+        g5.addArestaD(2, 3);
+        g5.addArestaD(3, 1);
+        g5.addArestaD(3, 4);
+        g5.addArestaD(4, 2);
+        euler.testeGrafo(g5);
     }
 }
